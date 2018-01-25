@@ -1,6 +1,7 @@
 import Toast from './Toast'
 
 const VueZToast = {}
+let timer
 
 /**
  * 暴露插件安装
@@ -17,9 +18,10 @@ VueZToast.install = (Vue, options) => {
 	 * @param {number} duration
 	 */
 	Vue.prototype.$toast = (message, duration = 2000) => {
+		clearTimeout(timer)
 		instance.message = message
 		instance.show = true
-		setTimeout(() => {
+		timer = setTimeout(() => {
 			instance.show = false
 		}, duration)
 	}
